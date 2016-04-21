@@ -22,5 +22,13 @@ module Training
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # No automatically generate redundant files
+    config.generators do |g|
+      g.test_framework nil
+      g.stylesheets false
+      g.javascripts false
+      g.helper false
+    end
   end
 end
