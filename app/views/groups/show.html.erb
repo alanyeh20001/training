@@ -2,7 +2,9 @@
   <%= render "auth" %>
 
   <div class="group pull-right">
-    <%= link_to("Edit", edit_group_path(@group), class: "btn btn-md btn-default") %>
+    <% if current_user && @group.editable_by?(current_user) %>
+      <%= link_to("Edit", edit_group_path(@group), class: "btn btn-md btn-default") %>
+    <% end %>
     <%= link_to("New Post", new_group_post_path(@group), class: "btn btn-md btn-default") %>
   </div>
 

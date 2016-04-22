@@ -4,4 +4,8 @@ class Group < ActiveRecord::Base
   has_many :posts  
   validates :title, presence: true
 
+  def editable_by?(user)
+    user && user == owner
+  end
+
 end
