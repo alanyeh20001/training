@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :find_group
   before_action :member_required, only: [:new, :create]
@@ -58,5 +57,4 @@ class PostsController < ApplicationController
       redirect_to group_path(@group)
     end
   end
-
 end
