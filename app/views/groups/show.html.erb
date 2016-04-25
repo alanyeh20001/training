@@ -1,12 +1,29 @@
 <div class="col-sm-10 col-sm-offset-1">
-  <%= render "auth" %>
-
   <div class="group pull-right">
     <% if current_user && @group.editable_by?(current_user) %>
       <%= link_to("Edit", edit_group_path(@group), class: "btn btn-md btn-default") %>
     <% end %>
     <%= link_to("New Post", new_group_post_path(@group), class: "btn btn-md btn-default") %>
   </div>
+
+  <%= render "auth" %>
+  
+  <% if current_user %>
+    <div class="member-or-not pull-right">
+      <% if current_user.is_member_of?(@group) %>
+        <%= link_to("Quit Group", quit_group_path(@group), method: :post, class: "btn btn-md btn-warning") %>
+      <% else %>
+        <%= link_to("Join Group", join_group_path(@group), method: :post, class: "btn btn-md btn-warning") %>
+      <% end %>
+    </div>
+  
+    <div class="group pull-right">
+      <% if current_user && @group.editable_by?(current_user) %>
+        <%= link_to("Edit", edit_group_path(@group), class: "btn btn-md btn-default") %>
+      <% end %>
+      <%= link_to("New Post", new_group_post_path(@group), class: "btn btn-md btn-default") if current_user.is_member_of?(@group) %>
+    </div>
+  <% end %>
 
   <h2><%= @group.title %></h2>
   <p><%= @group.description %></p>
@@ -22,7 +39,7 @@
           <% if current_user && post.editable_by?(current_user) %>
             <td>
               <%= link_to("Edit", edit_group_post_path(post.group, post), class: "btn btn-sm") %>
-              <%= link_to("Delete", group_post_path(post.group, post), class: "btn btn-sm", method: :delete, data: { confirm: "Are you sure???"}) %>
+              <%= link_to("Delete", group_post_path(post.group, post), class: "btn btn-sm", method: :delete, data: { confirm: "Are you sure???" }) %>
             </td>
           <% end %>
         </tr>
