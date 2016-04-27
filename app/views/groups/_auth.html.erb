@@ -4,5 +4,7 @@
     <%= link_to("Registration", new_user_registration_path, class: "btn btn-info") %>
   <% else %>
     <%= link_to("Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-info") %>
+    <%= link_to("My Group", account_groups_path, class: "btn btn-warning") %>
+    <%= link_to("My Post", account_posts_path, class: "btn btn-warning") %>
   <% end %>
 </div>
