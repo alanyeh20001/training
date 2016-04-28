@@ -7,6 +7,8 @@ class Group < ActiveRecord::Base
 
   validates :title, presence: true
 
+  scope :popular, -> { order("posts_count DESC") }
+
   def editable_by?(user)
     user && user == owner
   end
