@@ -1,11 +1,5 @@
 <div class="col-sm-10 col-sm-offset-1">
   
-  <%= simple_form_for @group do |f| %>
-    <%= f.input :title, input_html: { class: "input-xxlarge" } %>
-    <%= f.input :description, input_html: { class: "input-xxlarge" } %>
-    <div class="form-actions">
-      <%= f.submit "Submit", disable_with: 'Submitting...', class: "btn btn-md btn-default" %>
-    </div>
-  <% end %>
+  <%= render "form" %>
 
 </div>

@@ -1,11 +1,5 @@
 <div class="col-xs-10 col-xs-offset-1">
 
-  <%= simple_form_for [@group, @post] do |f| %>
-    <%= f.input :content, input_html: { class: "input-xxlarge" } %>
-
-    <div class="form-actions">
-      <%= f.submit "Submit", disable_with: "Submitting...", class: "btn btn-default" %>
-    </div>
-  <% end %>
+  <%= render "form" %>
 
 </div>
