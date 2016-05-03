@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+＃Ignore database secret key in production environment
+/config/database.yml
