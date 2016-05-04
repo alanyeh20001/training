@@ -52,6 +52,12 @@ group :development do
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+
+  # Use Capistrano to deploy
+  gem 'capistrano', '3.4', require: false
+  gem 'capistrano-rvm','~> 0.1.1', require: false
+  gem 'capistrano-rails', '~> 1.1', require: false
+  gem 'capistrano-rbenv', '~> 2.0', require: false
 end
 
 group :production do
