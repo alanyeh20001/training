@@ -4,6 +4,13 @@ lock '3.4.0'
 set :application, 'training'
 set :repo_url, 'git@github.com:alanyeh20001/training.git'
 
+# rbenv setting
+set :rbenv_type, :system
+set :rbenv_ruby, "2.2.4"
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w(rake gem bundle ruby rails)
+set :rbenv_roles, :all
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
