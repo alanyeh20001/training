@@ -13,6 +13,7 @@ set :rbenv_roles, :all
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/apps/training'
@@ -45,36 +46,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin','log', 'tmp/pids', 'tmp/cac
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-namespace :passenger do
-  task :restart do
-    on roles(:web) do 
-      within release_path do
-        execute :touch, 'tmp/restart.txt'
-      end
-    end
-  end
-end
 
 after "deploy:publishing", "deploy:restart"
-after "deploy:restart", "passenger:restart"
+after "deploy:restart", "unicorn:reload"
 
-
-# namespace :deploy do
-
-#   task :restart do
-#     on roles(:web), in: :sequence, wait: 5 do 
-#       execute :mkdir, '-p', "#{ release_path }/tmp"
-#       execute :touch, release_path.join('tmp/restart.txt')
-#     end
-#   end 
-
-#   after :restart, :clear_cache do
-#     on roles(:web), in: :groups, limit: 3, wait: 10 do
-#       # Here we can do anything such as:
-#       # within release_path do
-#       #   execute :rake, 'cache:clear'
-#       # end
-#     end
-#   end
-
-# end
