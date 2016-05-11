@@ -48,5 +48,4 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin','log', 'tmp/pids', 'tmp/cac
 
 
 after "deploy:publishing", "deploy:restart"
-after "deploy:restart", "unicorn:reload"
-
+after "deploy:restart", "unicorn:restart"
